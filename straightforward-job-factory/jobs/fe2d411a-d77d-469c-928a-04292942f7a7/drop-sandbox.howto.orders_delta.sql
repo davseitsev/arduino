@@ -1,0 +1,1 @@
+DROP TABLE sandbox.howto.orders_delta
