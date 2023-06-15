@@ -1,0 +1,21 @@
+id: 24df6574_0385_4c42_b4f6_61304c60a89b
+  owner: star@wix.com
+  description: Orders incremental update job
+  schedule_interval: 0 3 * * *
+  severity: critical
+  labels: ["sox"]
+  version: 1.57
+  dependencies:
+    - 42
+    - presto:sandbox.howto.transactions
+  queries:
+    create_sandbox_howto_orders_delta: |
+      create-sandbox.howto.orders_delta.sql
+    merge_sandbox_howto_orders: |
+      merge-sandbox.howto.orders.sql
+    drop_sandbox_howto_orders_delta: |
+      drop-sandbox.howto.orders_delta.sql
+  actions:
+    - actionType: tableau
+      params:
+        workbookUrl: https://tableau.wixpress.com/#/.../ByAgent
